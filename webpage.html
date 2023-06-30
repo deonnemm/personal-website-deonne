@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Personal Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .counter {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    #server-time {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .menu a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Personal Website</h1>
+
+  <div class="menu">
+    <a href="#bio">Bio</a>
+    <a href="#qualifications">Qualifications</a>
+  </div>
+
+  <div class="container">
+    <section id="bio">
+      <h2>Bio</h2>
+      <p>Write your bio information here...</p>
+    </section>
+
+    <section id="qualifications">
+      <h2>Qualifications</h2>
+      <ul>
+        <li>Qualification 1</li>
+        <li>Qualification 2</li>
+        <li>Qualification 3</li>
+      </ul>
+    </section>
+
+    <form id="enquiry-form">
+      <h2>Contact Me</h2>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <input type="submit" value="Submit">
+    </form>
+
+    <div class="counter">
+      Page visits: <span id="visit-counter">0</span>
+    </div>
+
+    <div id="server-time">
+      Server time: <span id="current-time"></span>
+    </div>
+  </div>
+
+  <script>
+    // Enquiry form submission
+    document.getElementById('enquiry-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Retrieve form data
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+
+      // Perform form validation and submission (you can customize this)
+      if (name && email && message) {
+        // Send the form data to the server (you need to implement server-side handling)
+        console.log('Name:', name);
+        console.log('Email:', email);
+        console.log('Message:', message);
+
+        // Clear the form fields after submission
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('message').value = '';
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+
+    // Page visit counter
+    var visitCounter = localStorage.getItem('visitCounter');
+    if (!visitCounter) {
+      visitCounter = 0;
+    }
+
+    visitCounter++;
+    localStorage.setItem('visitCounter', visitCounter);
+    document.getElementById('visit-counter').textContent = visitCounter;
+
+    // Server time display
+    function updateServerTime() {
+      var currentTime = new Date().toLocaleTimeString();
+      document.getElementById('current-time').textContent = currentTime;
+    }
+
+    // Update server time every second
+    setInterval(updateServerTime, 1000);
+  </script>
+</body>
+</html>
